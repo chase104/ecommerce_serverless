@@ -5,11 +5,10 @@ import Auth from "./pages/Auth";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
 import ProductPage from "./pages/ProductPage";
+import { useSelector } from "react-redux";
 
 function App() {
-  // get user from redux toolkit slice
-  let user = false;
-
+  let user = useSelector((state) => state.user.value);
   useEffect(() => {
     axios("https://4437y2tox5.execute-api.us-east-1.amazonaws.com/")
       .then(console.log)
@@ -18,7 +17,8 @@ function App() {
       .then(console.log)
       .catch(console.error);
   }, []);
-  if (user) return <Auth />;
+
+  if (!user) return <Auth />;
   return (
     // basic react router dom routing for pages
     <div>
