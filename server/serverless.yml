@@ -1,0 +1,23 @@
+org: chasevanhalen
+app: aws-node-project
+service: server
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+
+functions:
+  base:
+    handler: index.one
+    events:
+      - httpApi:
+          path: /
+          method: get
+
+  two:
+    handler: index.two
+    events:
+      - httpApi:
+          path: /two
+          method: get
