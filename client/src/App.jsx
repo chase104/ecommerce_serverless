@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import "./App.css";
-import axios from "axios";
 import Auth from "./pages/Auth";
 import { Navigate, Route, Routes } from "react-router-dom";
 import Dashboard from "./pages/Dashboard";
@@ -9,13 +8,9 @@ import { useSelector } from "react-redux";
 
 function App() {
   let user = useSelector((state) => state.user.value);
+  let apiEndpoint = useSelector((state) => state.metadata.apiEndpoint);
   useEffect(() => {
-    axios("https://4437y2tox5.execute-api.us-east-1.amazonaws.com/")
-      .then(console.log)
-      .catch(console.error);
-    axios("https://4437y2tox5.execute-api.us-east-1.amazonaws.com/two")
-      .then(console.log)
-      .catch(console.error);
+    // eventually we will check for a current session here and possibly set user if there is one
   }, []);
 
   if (!user) return <Auth />;
